@@ -1,0 +1,106 @@
+{
+  "kpis": [
+    {
+      "id": "duesDiscoms",
+      "name": "Dues from Discoms",
+      "value": 12500000,
+      "unit": "INR",
+      "trend": [
+        {"month":"Jan","amount":1500000},
+        {"month":"Feb","amount":1600000},
+        {"month":"Mar","amount":1800000},
+        {"month":"Apr","amount":2100000},
+        {"month":"May","amount":2000000},
+        {"month":"Jun","amount":1900000},
+        {"month":"Jul","amount":2300000},
+        {"month":"Aug","amount":2200000},
+        {"month":"Sep","amount":2400000},
+        {"month":"Oct","amount":2500000},
+        {"month":"Nov","amount":2600000},
+        {"month":"Dec","amount":2700000}
+      ]
+    },
+    {
+      "id": "investments",
+      "name": "Current Investment Details",
+      "unit": "INR",
+      "investments": [
+        {
+            "organization": "PNB",
+            "amount": 100000000,
+            "rate": 6,
+            "tenureMonths": 2,
+            "maturity": 101000000
+        },
+        {
+            "organization": "SBI",
+            "amount": 50000000,
+            "rate": 5.5,
+            "tenureMonths": 3,
+            "maturity": 50687500
+        },
+        {
+            "organization": "ICICI",
+            "amount": 20000000,
+            "rate": 6.2,
+            "tenureMonths": 1,
+            "maturity": 20010333
+        },
+        {
+            "organization": "HDFC",
+            "amount": 30000000,
+            "rate": 5.8,
+            "tenureMonths": 6,
+            "maturity": 30870000
+        },
+        {
+            "organization": "Axis Bank",
+            "amount": 40000000,
+            "rate": 6,
+            "tenureMonths": 4,
+            "maturity": 40400000
+        }
+      ]
+    },
+    {
+      "id": "grossBlock",
+      "name": "Gross Block / Book Value of Plant Asset",
+      "trend": [
+        {"year":"2024","amount":300000000},
+        {"year":"2025","amount":320000000}
+      ]
+    },
+    {
+      "id": "pnl",
+      "name": "Profit & Loss Statement (YTD)",
+      "statement": [
+        {"month":"Jan","revenue":5000000,"expense":3800000,"profit":1200000},
+        {"month":"Feb","revenue":6000000,"expense":4500000,"profit":1500000},
+        {"month":"Mar","revenue":7000000,"expense":4500000,"profit":2500000},
+        {"month":"Apr","revenue":6500000,"expense":4700000,"profit":1800000},
+        {"month":"May","revenue":7200000,"expense":5000000,"profit":2200000},
+        {"month":"Jun","revenue":7500000,"expense":5200000,"profit":2300000},
+        {"month":"Jul","revenue":7800000,"expense":5500000,"profit":2300000},
+        {"month":"Aug","revenue":8000000,"expense":5800000,"profit":2200000},
+        {"month":"Sep","revenue":8100000,"expense":5900000,"profit":2200000},
+        {"month":"Oct","revenue":8200000,"expense":6000000,"profit":2200000}
+      ]
+    },
+    {
+      "id": "plantGas",
+      "name": "Plant-wise Gas Bills (Last Month)",
+      "plants": [
+        {"plant":"Plant A","amount":420000},
+        {"plant":"Plant B","amount":320000},
+        {"plant":"Plant C","amount":240000},
+        {"plant":"Plant D","amount":360000},
+        {"plant":"Plant E","amount":280000},
+        {"plant":"Plant F","amount":400000},
+        {"plant":"Plant G","amount":310000},
+        {"plant":"Plant H","amount":330000},
+        {"plant":"Plant I","amount":290000},
+        {"plant":"Plant J","amount":350000}
+      ]
+    }
+  ]
+}

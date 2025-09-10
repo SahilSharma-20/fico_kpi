@@ -1,0 +1,222 @@
+<mvc:View
+    controllerName="fico.kpi.ficokpi.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    displayBlock="true"
+>
+    <Page title="FICO KPI Prototype">
+        <content>
+            <VBox class="sapUiSmallMargin" renderType="Bare" width="100%">
+
+                <!-- 1. Dues from Discoms -->
+       <Panel
+    headerText="{kpi>/kpis/0/name}"
+    class="kpiCard"
+>
+    <VBox>
+        <ObjectNumber
+            number="{kpi>/kpis/0/value}"
+            unit="{kpi>/kpis/0.unit}"
+        />
+        <viz:VizFrame
+            vizType="column"
+            height="250px"
+            width="100%"
+            uiConfig="{applicationSet:'fiori'}"
+            vizProperties='{
+                "title": {"visible": true, "text": "Dues From Discoms For 2024"},
+                "valueAxis": {
+                    "label":{"formatString":"#,##0","unit":""},
+                    "title":{"visible":true,"text":"Amount"}
+                },
+                "categoryAxis": {"title":{"visible":true}},
+                "plotArea": {"dataLabel":{"visible":true}},
+                "tooltip":{"visible":true, "formatString":"#,##0"}
+            }'
+        >
+            <viz:dataset>
+                <viz.data:FlattenedDataset data="{kpi>/kpis/0/trend}">
+                    <viz.data:dimensions>
+                        <viz.data:DimensionDefinition
+                            name="Month"
+                            value="{month}"
+                        />
+                    </viz.data:dimensions>
+                    <viz.data:measures>
+                        <viz.data:MeasureDefinition
+                            name="Amount"
+                            value="{amount}"
+                        />
+                    </viz.data:measures>
+                </viz.data:FlattenedDataset>
+            </viz:dataset>
+            <viz:feeds>
+                <viz.feeds:FeedItem
+                    uid="valueAxis"
+                    type="Measure"
+                    values="Amount"
+                />
+                <viz.feeds:FeedItem
+                    uid="categoryAxis"
+                    type="Dimension"
+                    values="Month"
+                />
+            </viz:feeds>
+        </viz:VizFrame>
+    </VBox>
+</Panel>
+
+                <!-- 2. Current Investment Details -->
+                <Panel headerText="{kpi>/kpis/1/name}" class="kpiCard">
+                    <VBox>
+                       <Table items="{kpi>/kpis/1/investments}">
+    <columns>
+        <Column><Text text="Organization"/></Column>
+        <Column><Text text="Amount"/></Column>
+        <Column><Text text="Rate (%)"/></Column>
+        <Column><Text text="Tenure (Months)"/></Column>
+        <Column><Text text="Maturity Amount"/></Column>
+    </columns>
+    <ColumnListItem>
+        <cells>
+            <Text text="{kpi>organization}" />
+            <Text text="{kpi>amount}" />
+            <Text text="{kpi>rate}" />
+            <Text text="{kpi>tenureMonths}" />
+            <Text text="{kpi>maturity}" />
+        </cells>
+    </ColumnListItem>
+</Table>
+
+
+
+                        <viz:VizFrame
+                            vizType="column"
+                            height="250px"
+                            width="100%"
+                            vizProperties='{
+                                "title": {"visible": true, "text": "Investment by Organization"},
+                                "valueAxis": {"label":{"formatString":"##,##0,,"}, "title":{"visible":true,"text":"Amount (Millions)"}},
+                                "categoryAxis": {"title":{"visible":true}},
+                                "plotArea": {"dataLabel":{"visible":true}},
+                                "tooltip":{"visible":true, "formatString":"#,##0"}
+                            }'
+                        >
+                            <viz:dataset>
+                                <viz.data:FlattenedDataset data="{kpi>/kpis/1/investments}">
+                                    <viz.data:dimensions>
+                                        <viz.data:DimensionDefinition name="Organization" value="{organization}" />
+                                    </viz.data:dimensions>
+                                    <viz.data:measures>
+                                        <viz.data:MeasureDefinition name="Investment Amount" value="{amount}" />
+                                        <viz.data:MeasureDefinition name="Maturity Amount" value="{maturity}" />
+                                    </viz.data:measures>
+                                </viz.data:FlattenedDataset>
+                            </viz:dataset>
+                            <viz:feeds>
+                                <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Investment Amount,Maturity Amount" />
+                                <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Organization" />
+                            </viz:feeds>
+                        </viz:VizFrame>
+                    </VBox>
+                </Panel>
+
+                <!-- 3. Gross Block / Book Value -->
+                <Panel headerText="{kpi>/kpis/2/name}" class="kpiCard">
+                    <viz:VizFrame
+                        vizType="column"
+                        height="250px"
+                        width="100%"
+                        vizProperties='{
+                            "title":{"visible":true,"text":"Book Value of Plant Asset"},
+                            "valueAxis":{"label":{"formatString":"##,##0,,"},"title":{"visible":true,"text":"Amount (Millions)"}},
+                            "categoryAxis":{"title":{"visible":true}},
+                            "plotArea":{"dataLabel":{"visible":true}},
+                            "tooltip":{"visible":true, "formatString":"#,##0"}
+                        }'
+                    >
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset data="{kpi>/kpis/2/trend}">
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition name="Year" value="{year}" />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition name="Book Value" value="{amount}" />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Book Value"/>
+                            <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Year"/>
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </Panel>
+
+                <!-- 4. Profit & Loss Statement (YTD) -->
+                <Panel headerText="{kpi>/kpis/3/name}" class="kpiCard">
+                    <viz:VizFrame
+                        vizType="line"
+                        height="250px"
+                        width="100%"
+                        vizProperties='{
+                            "title": {"visible": true, "text": "Profit and Loss Analysis"},
+                            "tooltip":{"visible":true,"formatString":"#,##0"}
+                        }'
+                    >
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset data="{kpi>/kpis/3/statement}">
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition name="Month" value="{month}" />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition name="Revenue" value="{revenue}" />
+                                    <viz.data:MeasureDefinition name="Expense" value="{expense}" />
+                                    <viz.data:MeasureDefinition name="Profit" value="{profit}" />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Revenue,Expense,Profit" />
+                            <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Month" />
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </Panel>
+
+                <!-- 5. Plant-wise Gas Bills (Last Month) -->
+                <Panel headerText="{kpi>/kpis/4/name}" class="kpiCard">
+                    <viz:VizFrame
+                        vizType="column"
+                        height="250px"
+                        width="100%"
+                        vizProperties='{
+                            "title":{"visible":true,"text":"Plant-wise Gas Bills"},
+                            "valueAxis":{"label":{"formatString":"##,##0,,"},"title":{"visible":true,"text":"Amount (Millions)"}},
+                            "categoryAxis":{"title":{"visible":true}},
+                            "plotArea":{"dataLabel":{"visible":true}},
+                            "tooltip":{"visible":true,"formatString":"#,##0"}
+                        }'
+                    >
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset data="{kpi>/kpis/4/plants}">
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition name="Plant" value="{plant}" />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition name="Amount" value="{amount}" />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Amount"/>
+                            <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Plant"/>
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </Panel>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

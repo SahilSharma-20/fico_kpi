@@ -1,6 +1,12 @@
 
 # fico_kpi
 KPI Charts For FICO 
+<img width="1366" height="599" alt="image" src="https://github.com/user-attachments/assets/1d014ff7-618f-47ec-b0b8-6a5e4f27dd4b" />
+<img width="1366" height="596" alt="image" src="https://github.com/user-attachments/assets/0bebef8f-6856-48bc-8cd1-04870e4972f5" />
+<img width="1361" height="597" alt="image" src="https://github.com/user-attachments/assets/234334ed-333b-40f2-819b-fa4c2a73c179" />
+
+
+
 =======
 ## Application Details
 |               |

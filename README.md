@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # fico_kpi
 KPI Charts For FICO 
 =======
@@ -39,3 +40,7 @@ An SAP Fiori application.
 
 
 >>>>>>> fa60379 (Initial commit of FICO KPI UI5 app)
+=======
+# fico_kpi
+KPI Charts For FICO 
+>>>>>>> 0d8603028fd3174a152769238b3bf2ce8f85c268

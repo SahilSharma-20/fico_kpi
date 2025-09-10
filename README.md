@@ -7,8 +7,6 @@ KPI Charts For FICO
 <img width="1361" height="597" alt="image" src="https://github.com/user-attachments/assets/234334ed-333b-40f2-819b-fa4c2a73c179" />
 
 
-
-=======
 ## Application Details
 |               |
 | ------------- |
